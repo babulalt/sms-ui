@@ -6,6 +6,8 @@ import { Home } from '../Home';
 import { SignIn } from '../Signin';
 import { SignUp } from '../Signup';
 import PrivateRoute from "./PrivateRouting";
+import { BictCourse } from '../BictCourse';
+
 
 
 const Router = () => {
@@ -19,6 +21,8 @@ const Router = () => {
         <Route  path='/online' element={<EnrollForm />} /> 
 
         <Route path='/courses' element={<Course />} />
+        <Route path='/menu' element={<BictCourse />} />
+
         </Route>
       </Routes>
     </BrowserRouter>

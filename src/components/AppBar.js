@@ -176,6 +176,9 @@ export const ResponsiveAppBar = ({ children }) => {
               <Typography variant="contained" sx={{ pr: 5 }}>
                 <Link to="/courses">Courses</Link>
               </Typography>
+              <Typography variant="contained" sx={{ pr: 5 }}>
+                <Link to="/menu">Menu</Link>
+              </Typography>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
