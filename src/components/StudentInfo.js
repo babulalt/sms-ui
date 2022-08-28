@@ -198,7 +198,7 @@ export default function StudentInfo({
                          onBlur={formik.handleBlur}
                      />
                  </Grid>
-                 {/* <Grid item xs={12} sm={6}>
+                 <Grid item xs={12} sm={6}>
                      <Typography variant="h6" gutterBottom>
                          Parent Mobile Number
                      </Typography>
@@ -211,7 +211,7 @@ export default function StudentInfo({
                          variant="outlined"
                          onChange={formik.handleChange}
                      />
-                 </Grid> */}
+                 </Grid>
                  <Grid item xs={12} sm={6}>
                      <Typography variant="h6" gutterBottom>
                          Date of Birth
