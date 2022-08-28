@@ -12,18 +12,55 @@ import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom'
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import { Navigate } from "react-router-dom";
 import AdbIcon from '@mui/icons-material/Adb';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Footer } from './Footer';
 
 const mdTheme = createTheme();
+const pages = [
+  {
+    page:'Home',
+    index:0
+}, 
+  {
+    page:'About',
+    index:1
+  }
+  ,{
+    page:'Notice',
+    index:2
+  },
+  {
+    page:'Courses',
+    index:3
+  },
+  {
+    page:'Resources',
+    index:4
+  }
+];
 
-const pages = ['Home', 'About', 'Notice','Courses', 'Resources'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export const ResponsiveAppBar = ({ children }) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  function handleStepContent(step) {
+    switch (step) {
+      case 0:
+        return <Navigate to="/home" />
+      case 1:
+        return <Navigate to="/courses" />
+      case 2:
+        return <Navigate to="/online" />
+      case 3:
+        return <Navigate to="/home" />
+      default:
+        throw new Error('Unknown step');
+    }
+  } 
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -32,7 +69,7 @@ export const ResponsiveAppBar = ({ children }) => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = (index) => {
     setAnchorElNav(null);
   };
 
@@ -94,9 +131,9 @@ export const ResponsiveAppBar = ({ children }) => {
                     display: { xs: 'block', md: 'none' },
                   }}
                 >
-                  {pages.map((page) => (
-                    <MenuItem key={page} onClick={handleCloseNavMenu}>
-                      <Typography textAlign="center">{page}</Typography>
+                  {pages.map((data) => (
+                    <MenuItem key={data.page} onClick={handleCloseNavMenu}>
+                      <Typography textAlign="center">{data.page}</Typography>
                     </MenuItem>
                   ))}
                 </Menu>
@@ -121,13 +158,13 @@ export const ResponsiveAppBar = ({ children }) => {
                 LOGO
               </Typography>
               <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                {pages.map((page) => (
+                {pages.map((data) => (
                   <Button
-                    key={page}
+                    key={data.page}
                     onClick={handleCloseNavMenu}
                     sx={{ my: 2, color: 'white', display: 'block' }}
                   >
-                    {page}
+                    {data.page}
                   </Button>
                 ))}
               </Box>

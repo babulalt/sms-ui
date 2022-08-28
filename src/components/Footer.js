@@ -7,7 +7,7 @@ import Container from '@mui/material/Container';
 
 const footers = [
     {
-        title: 'Company',
+        title: 'Mahendra Ratna Campus',
         description: ['Team', 'History', 'Contact us', 'Locations'],
     },
     {
@@ -32,29 +32,34 @@ const footers = [
 
 function Copyright(props) {
     return (
-      <Typography variant="body2" color="text.secondary" align="center" {...props}>
-        {'Copyright © '}
-        <Link color="inherit" href="https://mui.com/">
-          Your Website
-        </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
-      </Typography>
+        <Typography variant="body2" color="text.secondary" align="center" {...props}>
+            {'Copyright © '}
+            <Link color="inherit" href="https://mui.com/">
+                Mahendra Ratna Campus
+            </Link>{' '}
+            {new Date().getFullYear()}
+            {'.'}
+        </Typography>
     );
-  }
+}
 
 export const Footer = () => {
     return (
         <div>
             <Container
-                maxWidth="md"
+                maxWidth="xl"
                 component="footer"
                 sx={{
                     borderTop: (theme) => `1px solid ${theme.palette.divider}`,
                     mt: 8,
-                    py: [3, 6],
+                    py: [3, 3],
+                    backgroundColor: "blue",
+                    color: "white",
                 }}
             >
+                <Typography variant="h3" color="white" gutterBottom>
+                   Mahendra Ratna Campus
+                </Typography>
                 <Grid container spacing={4} justifyContent="space-evenly">
                     {footers.map((footer) => (
                         <Grid item xs={6} sm={3} key={footer.title}>
@@ -73,6 +78,16 @@ export const Footer = () => {
                         </Grid>
                     ))}
                 </Grid>
+            </Container>
+            <Container
+                maxWidth="xl"
+                component="footer"
+                sx={{
+                    borderTop: (theme) => `1px solid ${theme.palette.divider}`,
+                    py: [2, 2],
+                    backgroundColor: "blue",
+                }}
+            >
                 <Copyright sx={{ mt: 5 }} />
             </Container>
         </div>
