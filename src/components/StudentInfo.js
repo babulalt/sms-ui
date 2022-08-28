@@ -7,87 +7,72 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { FormButton } from './FormButton';
+import { useFormik } from "formik";
+import Button from '@mui/material/Button';
+import * as Yup from 'yup';
 
 
-export const StudentInfo = ({
+export default function StudentInfo({
     activeStep,
     handleBack,
     handleNext,
-    steps }) => {
-    const [gender, setGender] = React.useState('');
-    const [firstName, setFirstName] = React.useState('');
-    const [lastName, setLastName] = React.useState('');
-    const [email, setEmail] = React.useState('');
-    const [mobileNum, setMobileNum] = React.useState('');
-    const [parentName, setParentName] = React.useState('');
-    const [parentRelation, setParentRelation] = React.useState('');
-    const [parentMobileNum, setParentMobileNum] = React.useState('');
-    const [dob, setDob] = React.useState('');
-
-    // const [errMsg,setError]=React.useState('');
-
-    const handleGenderChange = (event) => {
-        setGender(event.target.value);
-    };
-
-    const handleFirstNameChange = (event) => {
-        // if (event.target.value.length === 0) {
-        //     errMsg =setError('required first name')
-        // }else{
-            console.log(event.target.value)
-            setFirstName(event.target.value);
-      //  }  
-    }
-    const handleLastNameChange = (event) => {
-        setLastName(event.target.value);
-    }
-    const handleEmail = (event) => {
-        setEmail(event.target.value);
-    }
-    const handleMobileNum = (event) => {
-        setMobileNum(event.target.value)
-    }
-    const handleParentName = (event) => {
-        setParentName(event.target.Name)
-    }
-    const handleParentRelation = (event) => {
-        setParentRelation(event.target.Name)
-    }
-
-    const handleParentMobileNum = (event) => {
-        setParentMobileNum(event.target.Name)
-    }
-    const handleDob = (event) => {
-        setDob(event.target.Name)
-    }
+    steps }){
+    const formik = useFormik({
+        initialValues:{
+            firstName:"",
+            lastName:"",
+            gender:"",
+            email:"",
+            mobileNum:"",
+            parentName:"",
+            parentRelation:"",
+            // parentMobileNum:"",
+            dob:"",
+            religion:""
+        },
+        validationSchema:Yup.object({
+            firstName:Yup.string().max(15, "Must be 15 character or less").required("Required"),
+            lastName:Yup.string().max(15, "Must be 15 character or less").required("Required"),
+            gender:Yup.string().required("Required"),
+            email:Yup.string().email('Invalid Email').required(),
+            mobileNum:Yup.number().required(),
+            parentName:Yup.string().max(15, "Must be 15 character or less").required("Required"),
+            parentRelation:Yup.string().max(15, "Must be 15 character or less").required("Required"),
+            dob:Yup.string().required(),
+            religion:Yup.string().max(15, "Must be 15 character or less").required()
+        }),
+        // onSubmit: (handleNext) =>{
+        //     handleNext();
+        // }
+    });
 
     return (
-        <React.Fragment>
-            <Typography variant="h6" gutterBottom>
-                Personal Information
+    <form onSubmit={formik.handleSubmit}>
+        <div>
+        <Typography variant="h6" gutterBottom>
+            Personal Information
+        </Typography>
+        <Grid container spacing={3}>
+         <Grid item xs={12} sm={6}>
+          <Typography variant="h6" gutterBottom>
+                First Name
             </Typography>
-            <Grid container spacing={3}>
-                <Grid item xs={12} sm={6}>
-                    <Typography variant="h6" gutterBottom>
-                        First Name
-                    </Typography>
-                    <TextField
-                        required
-                        id="firstName"
-                        name="firstName"
-                        label="First Name"
-                        value={firstName}
-                        fullWidth
-                        //error={errMsg ? true : false}
-                        autoComplete="given-name"
-                        variant="outlined"
-                        //helperText={errMsg}
-                        onChange={(e) => {
-                           handleFirstNameChange(e)
-                        }}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6}>
+             <TextField
+                required
+                id="firstName"
+                name="firstName"
+                label="First Name"
+                value={formik.values.firstName}
+                fullWidth
+                error={formik.touched.firstName&&formik.errors.firstName ? true : false}
+                autoComplete="given-name"
+                variant="outlined"
+                helperText={formik.errors.firstName}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+            />
+         </Grid>
+                 <Grid item xs={12} sm={6}>
                     <Typography variant="h6" gutterBottom>
                         Last Name
                     </Typography>
@@ -96,158 +81,201 @@ export const StudentInfo = ({
                         id="lastName"
                         name="lastName"
                         label="Last Name"
-                        value={lastName}
+                        value={formik.values.lastName}
                         fullWidth
                         autoComplete="given-name"
                         variant="outlined"
-                        onChange={handleLastNameChange}
+                        onChange={formik.handleChange}
+                        error={formik.touched.lastName&&formik.errors.lastName ? true : false}
+                        helperText={formik.errors.lastName}
+                        onBlur={formik.handleBlur}
                     />
                 </Grid>
-                <Grid item xs={12} sm={6}>
-                    <Typography variant="h6" gutterBottom>
-                        Gender
-                    </Typography>
-                    <FormControl fullWidth sx={{ m: 0 }} size="large">
 
-                        <InputLabel id="demo-select-small">Gender</InputLabel>
-                        <Select
-                            labelId="gender"
-                            id="gender"
-                            value={gender}
-                            label="Select Gender"
-                            onChange={handleGenderChange}
-                        >
-                            <MenuItem value="select">
-                                <em>Select Gender</em>
-                            </MenuItem>
-                            <MenuItem value={10}>Male</MenuItem>
-                            <MenuItem value={20}>Female</MenuItem>
-                            <MenuItem value={30}>Others</MenuItem>
-                        </Select>
-                    </FormControl>
-                </Grid>
+
+                        <Grid item xs={12} sm={6}>
+                     <Typography variant="h6" gutterBottom>
+                         Gender
+                     </Typography>
+                     <FormControl fullWidth sx={{ m: 0 }} size="large">
+                         <InputLabel id="demo-select-small">Gender</InputLabel>
+                         <Select
+                             labelId="gender"
+                             id="gender"
+                             name="gender"
+                             value={formik.values.gender}
+                             label="Select Gender"
+                            onChange={formik.handleChange}
+                            error={formik.touched.gender&&formik.errors.gender ? true : false}
+                            onBlur={formik.handleBlur}
+                         >
+                             <MenuItem value="select">
+                                 <em>Select Gender</em>
+                             </MenuItem>
+                             <MenuItem value={10}>Male</MenuItem>
+                             <MenuItem value={20}>Female</MenuItem>
+                             <MenuItem value={30}>Others</MenuItem>
+                         </Select>
+                         {formik.touched.gender&&formik.errors.gender?<p style={{color:'#d32f2f', fontWeight:'400', fontSize:'0.75rem'}}>{formik.errors.gender}</p>:null}
+                     </FormControl>
+                 </Grid>
+        
+                 <Grid item xs={12} sm={6}>
+                     <Typography variant="h6" gutterBottom>
+                         Email
+                     </Typography>
+                     <TextField
+                        //  required
+                         id="email"
+                         name="email"
+                         label="Email"
+                         value={formik.values.email}
+                         fullWidth
+                         autoComplete="family-name"
+                         variant="outlined"
+                         onChange={formik.handleChange}
+                         error={formik.touched.email&&formik.errors.email ? true : false}
+                         helperText={formik.errors.email}
+                         onBlur={formik.handleBlur}
+                     />
+                 </Grid>
+
                 <Grid item xs={12} sm={6}>
-                    <Typography variant="h6" gutterBottom>
-                        Email
-                    </Typography>
-                    <TextField
-                        required
-                        id="email"
-                        name="email"
-                        label="Email"
-                        value={email}
-                        fullWidth
-                        autoComplete="family-name"
-                        variant="outlined"
-                        onChange={handleEmail}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <Typography variant="h6" gutterBottom>
-                        Mobile Number
-                    </Typography>
-                    <TextField
-                        required
-                        id="mobileNum"
-                        name="mobileNum"
-                        label="Mobile Number"
-                        value={mobileNum}
-                        fullWidth
-                        autoComplete="family-name"
-                        variant="outlined"
-                        onChange={handleMobileNum}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <Typography variant="h6" gutterBottom>
-                        Parent Name
-                    </Typography>
-                    <TextField
-                        required
-                        id="parentName"
-                        name="parentName"
-                        label="Parent Name"
-                        value={parentName}
-                        fullWidth
-                        autoComplete="family-name"
-                        variant="outlined"
-                        onChange={handleParentName}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <Typography variant="h6" gutterBottom>
-                        Patent Relation
-                    </Typography>
-                    <TextField
-                        required
-                        id="parentRelation"
-                        name="parentRelation"
-                        label="Patent Relation"
-                        value={parentRelation}
-                        fullWidth
-                        autoComplete="Patent Relation"
-                        variant="outlined"
-                        onChange={handleParentRelation}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <Typography variant="h6" gutterBottom>
-                        Parent Mobile Number
-                    </Typography>
-                    <TextField
-                        id="parentNumber"
-                        name="parentNumber"
-                        label="Parent Mobile Number"
-                        value={parentMobileNum}
-                        fullWidth
-                        variant="outlined"
-                        onChange={handleParentMobileNum}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <Typography variant="h6" gutterBottom>
-                        Date of Birth
-                    </Typography>
-                    <TextField
-                        required
-                        id="dob"
-                        name="dob"
-                        label="Date of Birth"
-                        value={dob}
-                        fullWidth
-                        autoComplete="dob"
-                        variant="outlined"
-                        onChange={handleDob}
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <Typography variant="h6" gutterBottom>
-                    Religion
-                    </Typography>
-                    <TextField
-                        required
-                        id="religion"
-                        name="religion"
-                        label="Religion"
-                        fullWidth
-                        autoComplete="religion"
-                        variant="outlined"
-                    />
-                </Grid>
-                {/* <Grid item xs={12}>
-          <FormControlLabel
-            control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
-            label="Use this address for payment details"
-          />
-        </Grid> */}
-            </Grid>
-            <Grid item sx={{ display: 'flex', justifyContent: 'flex-end' }} xs={12} >
-                <FormButton
-                    activeStep={activeStep}
-                    handleBack={handleBack}
-                    handleNext={handleNext}
-                    steps={steps} />
-            </Grid>
-        </React.Fragment>
+                     <Typography variant="h6" gutterBottom>
+                         Mobile Number
+                     </Typography>
+                     <TextField
+                         required
+                         id="mobileNum"
+                         name="mobileNum"
+                         label="Mobile Number"
+                         value={formik.values.mobileNum}
+                         fullWidth
+                         autoComplete="family-name"
+                         variant="outlined"
+                         onChange={formik.handleChange}
+                         error={formik.touched.mobileNum&&formik.errors.mobileNum ? true : false}
+                         helperText={formik.errors.mobileNum}
+                         onBlur={formik.handleBlur}
+                     />
+                 </Grid>
+
+             <Grid item xs={12} sm={6}>
+                     <Typography variant="h6" gutterBottom>
+                         Parent Name
+                     </Typography>
+                     <TextField
+                         required
+                         id="parentName"
+                         name="parentName"
+                         label="Parent Name"
+                         value={formik.values.parentName}
+                         fullWidth
+                         autoComplete="family-name"
+                         variant="outlined"
+                         onChange={formik.handleChange}
+                         error={formik.touched.parentName&&formik.errors.parentName ? true : false}
+                         helperText={formik.errors.parentName}
+                         onBlur={formik.handleBlur}
+                     />
+                 </Grid>
+                 <Grid item xs={12} sm={6}>
+                     <Typography variant="h6" gutterBottom>
+                         Patent Relation
+                     </Typography>
+                     <TextField
+                         required
+                         id="parentRelation"
+                         name="parentRelation"
+                         label="Patent Relation"
+                         value={formik.values.parentRelation}
+                         fullWidth
+                         autoComplete="Patent Relation"
+                         variant="outlined"
+                         onChange={formik.handleChange}
+                         error={formik.touched.parentRelation&&formik.errors.parentRelation ? true : false}
+                         helperText={formik.errors.parentRelation}
+                         onBlur={formik.handleBlur}
+                     />
+                 </Grid>
+                 {/* <Grid item xs={12} sm={6}>
+                     <Typography variant="h6" gutterBottom>
+                         Parent Mobile Number
+                     </Typography>
+                     <TextField
+                         id="parentNumber"
+                         name="parentNumber"
+                         label="Parent Mobile Number"
+                         value={formik.values.parentMobileNum}
+                         fullWidth
+                         variant="outlined"
+                         onChange={formik.handleChange}
+                     />
+                 </Grid> */}
+                 <Grid item xs={12} sm={6}>
+                     <Typography variant="h6" gutterBottom>
+                         Date of Birth
+                     </Typography>
+                     <TextField
+                         required
+                         id="dob"
+                         name="dob"
+                         label="Date of Birth"
+                         value={formik.values.dob}
+                         fullWidth
+                         autoComplete="dob"
+                         variant="outlined"
+                         onChange={formik.handleChange}
+                         error={formik.touched.dob&&formik.errors.dob ? true : false}
+                         helperText={formik.errors.dob}
+                         onBlur={formik.handleBlur}
+                     />
+                 </Grid>
+                 <Grid item xs={12} sm={6}>
+                     <Typography variant="h6" gutterBottom>
+                     Religion
+                     </Typography>
+                     <TextField
+                         required
+                         id="religion"
+                         name="religion"
+                         label="Religion"
+                         fullWidth
+                         autoComplete="religion"
+                         variant="outlined"
+                         value={formik.values.religion}
+                         onChange={formik.handleChange}
+                         error={formik.touched.religion&&formik.errors.religion ? true : false}
+                         helperText={formik.errors.religion}
+                         onBlur={formik.handleBlur}
+                     />
+                 </Grid>
+        </Grid>
+
+        <div>
+      {activeStep !== 0 && (
+        <Button onClick={handleBack} sx={{ mt: 3, ml: 1}}>
+          Back
+        </Button>
+      )}
+      <Button
+        type='submit'
+        variant="contained"
+        onClick={handleNext}
+        sx={{ mt: 3, ml: 1 }}
+        disabled={!formik.values.firstName || !formik.values.lastName || !formik.values.gender ||
+            !formik.values.email || !formik.values.mobileNum || !formik.values.parentName
+            || !formik.values.parentRelation || !formik.values.dob || !formik.values.religion ||
+            formik.errors.email || formik.errors.mobileNum
+        }
+      >
+        {activeStep === steps.length - 1 ? 'Submit' : 'Next'}
+      </Button>
+    </div>
+
+
+
+        </div>
+    </form>
     );
 }
