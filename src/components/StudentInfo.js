@@ -14,6 +14,7 @@ import * as Yup from 'yup';
 
 export default function StudentInfo({
     activeStep,
+    setActiveStep,
     handleBack,
     handleNext,
     steps }){

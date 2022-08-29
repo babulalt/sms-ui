@@ -7,6 +7,7 @@ import { FormButton } from './FormButton';
 export const AddressForm = (
     {
         activeStep,
+        setActiveStep,
         handleBack,
         handleNext,
         steps }
