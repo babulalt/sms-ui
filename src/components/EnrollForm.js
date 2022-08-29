@@ -12,36 +12,57 @@ import { AddressForm } from './AddressForm';
 import StudentInfo from './StudentInfo';
 import { FileInfo } from './FileInfo';
 import { EducationForm } from './EducationForm';
+import { StudentRegister } from './StudentRegister'
+import { StudentLogin } from './StudentLogin'
 
+const steps = ['Register', 'Login', 'Personal Info', 'Address Info', 'Education Info', 'File Attach'];
 
-const steps = ['Personal Info', 'Address Info','Education Info', 'File Attach'];
-
-function getStepContent(activeStep, steps, handleBack, handleNext) {
+function getStepContent(activeStep,setActiveStep, steps, handleBack, handleNext) {
   switch (activeStep) {
     case 0:
-      return <StudentInfo
+      return <StudentRegister
         activeStep={activeStep}
+        setActiveStep={setActiveStep}
         handleBack={handleBack}
         handleNext={handleNext}
         steps={steps}
       />;
     case 1:
-      return <AddressForm
+      return <StudentLogin
         activeStep={activeStep}
+        setActiveStep={setActiveStep}
         handleBack={handleBack}
         handleNext={handleNext}
         steps={steps}
-      />; 
+      />;
     case 2:
-      return <EducationForm
+      return <StudentInfo
         activeStep={activeStep}
+        setActiveStep={setActiveStep}
         handleBack={handleBack}
         handleNext={handleNext}
         steps={steps}
       />;
     case 3:
+      return <AddressForm
+        activeStep={activeStep}
+        setActiveStep={setActiveStep}
+        handleBack={handleBack}
+        handleNext={handleNext}
+        steps={steps}
+      />;
+    case 4:
+      return <EducationForm
+        activeStep={activeStep}
+        setActiveStep={setActiveStep}
+        handleBack={handleBack}
+        handleNext={handleNext}
+        steps={steps}
+      />;
+    case 5:
       return <FileInfo
         activeStep={activeStep}
+        setActiveStep={setActiveStep}
         handleBack={handleBack}
         handleNext={handleNext}
         steps={steps} />;
@@ -93,7 +114,7 @@ export const EnrollForm = () => {
               </React.Fragment>
             ) : (
               <React.Fragment>
-                {getStepContent(activeStep, steps, handleBack, handleNext)}
+                {getStepContent(activeStep,setActiveStep, steps, handleBack, handleNext)}
                 <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                 </Box>
               </React.Fragment>

@@ -32,11 +32,11 @@ const pages = [
     index:2
   },
   {
-    page:'Courses',
+    page:'Programs',
     index:3
   },
   {
-    page:'Resources',
+    page:'Downloads',
     index:4
   }
 ];

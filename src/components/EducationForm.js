@@ -7,6 +7,7 @@ import { FormButton } from './FormButton';
 export const EducationForm = (
     {
         activeStep,
+        setActiveStep,
         handleBack,
         handleNext,
         steps }

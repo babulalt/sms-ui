@@ -5,12 +5,12 @@ import TextField from '@mui/material/TextField';
 import { FormButton } from './FormButton';
 
 
-export const FileInfo = ( {
+export const FileInfo = ({
     activeStep,
+    setActiveStep,
     handleBack,
     handleNext,
-    steps}) => {
-
+    steps }) => {
     return (
         <React.Fragment>
             <Grid container spacing={3}>
@@ -119,12 +119,12 @@ export const FileInfo = ( {
                         variant="outlined"
                     />
                 </Grid>
-                <Grid item sx={{display: 'flex', justifyContent: 'flex-end'}} xs={12} >
-                <FormButton
-                activeStep={activeStep}
-                handleBack={handleBack}
-                handleNext={handleNext}
-                steps={steps} />
+                <Grid item sx={{ display: 'flex', justifyContent: 'flex-end' }} xs={12} >
+                    <FormButton
+                        activeStep={activeStep}
+                        handleBack={handleBack}
+                        handleNext={handleNext}
+                        steps={steps} />
                 </Grid>
             </Grid>
         </React.Fragment>

@@ -7,22 +7,22 @@ import Container from '@mui/material/Container';
 
 const footers = [
     {
-        title: 'Mahendra Ratna Campus',
-        description: ['Team', 'History', 'Contact us', 'Locations'],
+        title: 'Contact',
+        description: ['Address: Tahachal, Kathmandu', 'PO Box: 20828, Nepal', 'Phone :  01-537 1728', 'Email : mahendraratnacampus@gmail.com'],
     },
     {
-        title: 'Features',
+        title: 'Quick Links',
         description: [
-            'Cool stuff',
-            'Random feature',
-            'Team feature',
-            'Developer stuff',
-            'Another one',
+            'Home',
+            'Programs',
+            'Notices',
+            'Addmission',
+            'Downloads',
         ],
     },
     {
-        title: 'Resources',
-        description: ['Resource', 'Resource name', 'Another resource', 'Final resource'],
+        title: 'Useful Links',
+        description: ['National Examinations Board (NEB)', 'Tribhuvan University (TU) ', 'Faculty of Education', 'Ministry of Education'],
     },
     {
         title: 'Legal',
@@ -72,7 +72,7 @@ export const Footer = () => {
                                         <Link href="#" variant="subtitle1" color="text.secondary">
                                             {item}
                                         </Link>
-                                    </li>
+                                     </li>
                                 ))}
                             </ul>
                         </Grid>
