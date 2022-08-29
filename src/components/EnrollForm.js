@@ -9,7 +9,7 @@ import StepLabel from '@mui/material/StepLabel';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { AddressForm } from './AddressForm';
-import StudentInfo from './StudentInfo';
+import { StudentInfo } from './StudentInfo';
 import { FileInfo } from './FileInfo';
 import { EducationForm } from './EducationForm';
 import { StudentRegister } from './StudentRegister'

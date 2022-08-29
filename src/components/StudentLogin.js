@@ -29,7 +29,6 @@ export const StudentLogin = ({
             console.log('Inside onsubmit.....')
             console.log(formik.values.firstName)
             handleNext2();
-
         }
     });
 
