@@ -14,11 +14,20 @@ import { FileInfo } from './FileInfo';
 import { EducationForm } from './EducationForm';
 import { StudentRegister } from './StudentRegister'
 import { StudentLogin } from './StudentLogin'
+import { CourseChoice } from './CourseChoice'
 
-const steps = ['Register', 'Login', 'Personal Info', 'Address Info', 'Education Info', 'File Attach'];
+const steps = ['Register', 'Login', 'Applicant Info', 'Address Info', 'Education Info', 'File Attach'];
 
 function getStepContent(activeStep,setActiveStep, steps, handleBack, handleNext) {
   switch (activeStep) {
+    // case 0:
+    //   return <CourseChoice
+    //     activeStep={activeStep}
+    //     setActiveStep={setActiveStep}
+    //     handleBack={handleBack}
+    //     handleNext={handleNext}
+    //     steps={steps}
+    //   />;
     case 0:
       return <StudentRegister
         activeStep={activeStep}
@@ -90,7 +99,7 @@ export const EnrollForm = () => {
       <Container component="main" maxWidth="lg" sx={{ pt: 3, mb: 4 }}>
         <Paper variant="outlined" sx={{ my: { pt: 10, xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component="h1" variant="h4" align="center">
-            Student Enroll Form
+            Student Enrollment Form
           </Typography>
           <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
             {steps.map((label) => (

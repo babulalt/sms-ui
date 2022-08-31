@@ -25,6 +25,11 @@ export const AddressForm = (
             municipality:"",
             street:"",
             wardNum:"",
+            tcountry: "",
+            tstate: "",
+            tmunicipality:"",
+            tstreet:"",
+            twardNum:"",
         },
 
         validationSchema: Yup.object({
@@ -33,6 +38,11 @@ export const AddressForm = (
             municipality:Yup.string().required("please select municipality"),
             street:Yup.string().required("required street"),
             wardNum:Yup.string().required("required ward number"),
+            tcountry: Yup.string().required("please select county"),
+            tstate: Yup.string().required("please select state"),
+            tmunicipality:Yup.string().required("please select municipality"),
+            tstreet:Yup.string().required("required street"),
+            twardNum:Yup.string().required("required ward number"),
         }),
 
         onSubmit: (handleNext) => {
@@ -163,12 +173,16 @@ export const AddressForm = (
                         </Typography>
                         <TextField
                             required
-                            id="country"
-                            name="country"
+                            id="tcountry"
+                            name="tcountry"
                             label="Country"
                             fullWidth
+                            error={formik.touched.tcountry && formik.errors.tcountry ? true : false}
                             autoComplete="given-name"
                             variant="outlined"
+                            helperText={formik.errors.tcountry}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
                         />
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -177,12 +191,16 @@ export const AddressForm = (
                         </Typography>
                         <TextField
                             required
-                            id="state"
-                            name="state"
+                            id="tstate"
+                            name="tstate"
                             label="State"
                             fullWidth
+                            error={formik.touched.tstate && formik.errors.tstate ? true : false}
                             autoComplete="given-name"
                             variant="outlined"
+                            helperText={formik.errors.this.tstate}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
                         />
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -195,8 +213,12 @@ export const AddressForm = (
                             name="municipality"
                             label="Rural/Municipality"
                             fullWidth
+                            error={formik.touched.tmunicipality && formik.errors.tmunicipality ? true : false}
                             autoComplete="family-name"
                             variant="outlined"
+                            helperText={formik.errors.tmunicipality}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
                         />
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -205,12 +227,16 @@ export const AddressForm = (
                         </Typography>
                         <TextField
                             required
-                            id="street"
-                            name="street"
+                            id="tstreet"
+                            name="tstreet"
                             label="Street"
                             fullWidth
+                            error={formik.touched.tstreet && formik.errors.tstreet ? true : false}
                             autoComplete="family-name"
                             variant="outlined"
+                            helperText={formik.errors.tstreet}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
                         />
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -219,12 +245,16 @@ export const AddressForm = (
                         </Typography>
                         <TextField
                             required
-                            id="wardNum"
-                            name="wardNum"
+                            id="twardNum"
+                            name="twardNum"
                             label="Ward Number"
                             fullWidth
+                            error={formik.touched.twardNum && formik.errors.twardNum ? true : false}
                             autoComplete="family-name"
                             variant="outlined"
+                            helperText={formik.errors.twardNum}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
                         />
                     </Grid>
                     <Grid item xs={12} sm={6}>

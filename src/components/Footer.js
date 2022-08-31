@@ -2,7 +2,6 @@ import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
-import Container from '@mui/material/Container';
 
 
 const footers = [
@@ -32,7 +31,7 @@ const footers = [
 
 function Copyright(props) {
     return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
+        <Typography variant="body2" color="white" align="center" {...props}>
             {'Copyright © '}
             <Link color="inherit" href="https://mui.com/">
                 Mahendra Ratna Campus
@@ -46,18 +45,8 @@ function Copyright(props) {
 export const Footer = () => {
     return (
         <div>
-            <Container
-                maxWidth="xl"
-                component="footer"
-                sx={{
-                    borderTop: (theme) => `1px solid ${theme.palette.divider}`,
-                    mt: 8,
-                    py: [3, 3],
-                    backgroundColor: "blue",
-                    color: "white",
-                }}
-            >
-                <Typography variant="h3" color="white" gutterBottom>
+        <div style={{backgroundColor:'white',padding:'15px',}}>
+                <Typography variant="h3" color="blue" gutterBottom>
                    Mahendra Ratna Campus
                 </Typography>
                 <Grid container spacing={4} justifyContent="space-evenly">
@@ -78,18 +67,10 @@ export const Footer = () => {
                         </Grid>
                     ))}
                 </Grid>
-            </Container>
-            <Container
-                maxWidth="xl"
-                component="footer"
-                sx={{
-                    borderTop: (theme) => `1px solid ${theme.palette.divider}`,
-                    py: [2, 2],
-                    backgroundColor: "blue",
-                }}
-            >
-                <Copyright sx={{ mt: 5 }} />
-            </Container>
+                </div>
+                <div  style={{backgroundColor:'blue',padding:'15px',}}>
+                    <Copyright sx={{mt: 3 }} />
+                </div>
         </div>
     )
 }

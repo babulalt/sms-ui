@@ -5,72 +5,65 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom'
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { Navigate } from "react-router-dom";
-import AdbIcon from '@mui/icons-material/Adb';
+import { useNavigate } from "react-router-dom";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Footer } from './Footer';
+
 
 const mdTheme = createTheme();
 const pages = [
   {
-    page:'Home',
-    index:0
-}, 
+    page: 'Home',
+    indexs: 0
+  },
   {
-    page:'About',
-    index:1
+    page: 'About',
+    indexs: 1
   }
-  ,{
-    page:'Notice',
-    index:2
+  , {
+    page: 'Notice',
+    indexs: 2
   },
   {
-    page:'Programs',
-    index:3
+    page: 'Programs',
+    indexs: 3
   },
   {
-    page:'Downloads',
-    index:4
+    page: 'Courses',
+    indexs: 4
   }
 ];
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export const ResponsiveAppBar = ({ children }) => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const navigate =useNavigate();
 
-  function handleStepContent(step) {
+  const handleStepContent = (step) => () => {
+    console.log(step)
     switch (step) {
-      case 0:
-        return <Navigate to="/home" />
-      case 1:
-        return <Navigate to="/courses" />
-      case 2:
-        return <Navigate to="/online" />
-      case 3:
-        return <Navigate to="/home" />
+      case 0: 
+        return navigate("/home");
+      case 1:  
+        return navigate("/home");
+      case 2: 
+        return navigate("/home")
+      case 3: 
+        return navigate("/courses")
       default:
-        throw new Error('Unknown step');
+        return navigate("/menu")
     }
-  } 
+  }
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = (index) => {
-    setAnchorElNav(null);
   };
 
   const handleCloseUserMenu = () => {
@@ -83,12 +76,11 @@ export const ResponsiveAppBar = ({ children }) => {
         <AppBar position="static">
           <Container maxWidth="xl">
             <Toolbar disableGutters>
-              <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
               <Typography
-                variant="h6"
+                variant="h4"
                 noWrap
                 component="a"
-                href="/"
+                href="/home"
                 sx={{
                   mr: 2,
                   display: { xs: 'none', md: 'flex' },
@@ -101,84 +93,21 @@ export const ResponsiveAppBar = ({ children }) => {
               >
                 MRC
               </Typography>
-
-              <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                <IconButton
-                  size="large"
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  onClick={handleOpenNavMenu}
-                  color="inherit"
-                >
-                  <MenuIcon />
-                </IconButton>
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorElNav}
-                  anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'left',
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
-                  }}
-                  open={Boolean(anchorElNav)}
-                  onClose={handleCloseNavMenu}
-                  sx={{
-                    display: { xs: 'block', md: 'none' },
-                  }}
-                >
-                  {pages.map((data) => (
-                    <MenuItem key={data.page} onClick={handleCloseNavMenu}>
-                      <Typography textAlign="center">{data.page}</Typography>
-                    </MenuItem>
-                  ))}
-                </Menu>
-              </Box>
-              <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-              <Typography
-                variant="h5"
-                noWrap
-                component="a"
-                href=""
-                sx={{
-                  mr: 2,
-                  display: { xs: 'flex', md: 'none' },
-                  flexGrow: 1,
-                  fontFamily: 'monospace',
-                  fontWeight: 700,
-                  letterSpacing: '.3rem',
-                  color: 'inherit',
-                  textDecoration: 'none',
-                }}
-              >
-                LOGO
-              </Typography>
               <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                 {pages.map((data) => (
                   <Button
                     key={data.page}
-                    onClick={handleCloseNavMenu}
+                    onClick={handleStepContent(data.indexs)}
                     sx={{ my: 2, color: 'white', display: 'block' }}
                   >
                     {data.page}
                   </Button>
                 ))}
               </Box>
-
               <Box sx={{ flexGrow: 0 }}>
-              <Typography variant="contained" sx={{ pr: 5 }}>
-                <Link to="/online">Online Form</Link>
-              </Typography>
-              <Typography variant="contained" sx={{ pr: 5 }}>
-                <Link to="/courses">Courses</Link>
-              </Typography>
-              <Typography variant="contained" sx={{ pr: 5 }}>
-                <Link to="/menu">Menu</Link>
-              </Typography>
+                <Typography variant="contained" sx={{ pr: 5, color: 'red' }}>
+                  <Link to="/online" style={{ color: '#FFF', textDecoration: 'none' }} >Online Form</Link>
+                </Typography>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
@@ -234,11 +163,11 @@ export const ResponsiveAppBar = ({ children }) => {
             }}
           >
             {children}
-            <Footer/>
           </Box>
         </Box>
-    </ThemeProvider>
-   </div >
+        <Footer />
+      </ThemeProvider>
+    </div >
   );
 };
 export default ResponsiveAppBar;
