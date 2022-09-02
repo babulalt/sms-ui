@@ -6,6 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import Container from '@mui/material/Container';
+import { NavLink } from 'react-router-dom'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom'
@@ -31,19 +32,31 @@ const pages = [
     indexs: 2
   },
   {
-    page: 'Programs',
-    indexs: 3
-  },
-  {
     page: 'Courses',
     indexs: 4
   }
 ];
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const programs = [
+  {
+    name: 'Bachelor of Inforamtion and Communication Technology',
+    path: '/menu'
+  },
+  {
+    name: 'Bachelor of Inforamtion Management',
+    path: '/menu'
+  }
+  , {
+    name: 'Bachelor of Computer Application (BCA)',
+    path: '/menu'
+  },
+];
 
 export const ResponsiveAppBar = ({ children }) => {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorElPrograms, setAnchorElPrograms] = React.useState(null);
+
   const navigate =useNavigate();
 
   const handleStepContent = (step) => () => {
@@ -69,6 +82,14 @@ export const ResponsiveAppBar = ({ children }) => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const handleOpenProgramsMenu=(event)=>{
+    setAnchorElPrograms(event.currentTarget);
+  }
+
+  const handleCloseProgramsMenu=()=>{
+    setAnchorElPrograms(null);
+  }
 
   return (
     <div>
@@ -103,6 +124,35 @@ export const ResponsiveAppBar = ({ children }) => {
                     {data.page}
                   </Button>
                 ))}
+                 <Button
+                    onClick={handleOpenProgramsMenu}
+                    sx={{ my: 2, color: 'white', display: 'block' }}
+                  >
+                   Programs
+                  </Button>
+                  <Menu
+                  sx={{ mt: '45px' }}
+                  id="menu-appbar"
+                  anchorEl={anchorElPrograms}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }} 
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={Boolean(anchorElPrograms)}
+                  onClose={handleCloseProgramsMenu}
+                >
+                  {programs.map((program) => (
+                    <MenuItem key={program} onClick={handleCloseProgramsMenu}
+                    onMouseEnter={(e) => e.target.style.color = 'blue'} >
+                      <NavLink to={program.path} >{program.name} </NavLink>
+                    </MenuItem>
+                  ))}
+                </Menu>
               </Box>
               <Box sx={{ flexGrow: 0 }}>
                 <Typography variant="contained" sx={{ pr: 5, color: 'red' }}>
@@ -113,14 +163,14 @@ export const ResponsiveAppBar = ({ children }) => {
                     <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
                   </IconButton>
                 </Tooltip>
-                <Menu
+               <Menu
                   sx={{ mt: '45px' }}
                   id="menu-appbar"
                   anchorEl={anchorElUser}
                   anchorOrigin={{
                     vertical: 'top',
                     horizontal: 'right',
-                  }}
+                  }} 
                   keepMounted
                   transformOrigin={{
                     vertical: 'top',
@@ -130,7 +180,7 @@ export const ResponsiveAppBar = ({ children }) => {
                   onClose={handleCloseUserMenu}
                 >
                   {settings.map((setting) => (
-                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                    <MenuItem key={setting} onClick={handleCloseUserMenu} >
                       <Typography textAlign="center">{setting}</Typography>
                     </MenuItem>
                   ))}

@@ -96,7 +96,7 @@ export const EnrollForm = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Container component="main" maxWidth="lg" sx={{ pt: 3, mb: 4 }}>
+      <Container component="main" maxWidth="100%" sx={{ pt: 3, mb: 4 }}>
         <Paper variant="outlined" sx={{ my: { pt: 10, xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component="h1" variant="h4" align="center">
             Student Enrollment Form
