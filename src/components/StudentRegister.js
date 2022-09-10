@@ -26,8 +26,8 @@ export const StudentRegister = ({
             cpwd: "",
         },
         validationSchema: Yup.object({
-            firstName: Yup.string().max(15, "Must be 15 character or less").required("required firstname"),
-            lastName: Yup.string().max(15, "Must be 15 character or less").required("required lastname"),
+            firstName: Yup.string().max(15, "must be 15 character or less").required("required firstname"),
+            lastName: Yup.string().max(15, "must be 15 character or less").required("required lastname"),
             email: Yup.string().email('invalid email').required(),
             mobileNum: Yup.number().required(),
             password: Yup.string().max(8, "must be 8 character or less").required("required password"),

@@ -4,3 +4,4 @@ export const ADD_COURSE = "ADD_COURSE";
 export const IS_AUTH = "IS_AUTH";
 export const LOG_OUT = "LOG_OUT";
 export const ISIGNUP = "SIGN_UP";
+export const STUDENT_INFO = "STUDENT_INFO";
