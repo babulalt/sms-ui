@@ -15,10 +15,10 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<SignIn />} />
+        {/* <Route path='/' element={<SignIn />} /> */}
         <Route path='/signup' element={<SignUp/>}/>
         <Route element={<PrivateRoute />}>
-        {/* <Route path='/' element={<Home />} /> */}
+        <Route path='/' element={<Home />} />
         <Route index path='/home' element={<Home />} />
         <Route  path='/online' element={<EnrollForm />} /> 
         <Route path='/coursechoice' element={CourseChoice}/>
