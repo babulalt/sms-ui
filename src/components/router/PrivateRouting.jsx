@@ -8,15 +8,15 @@ function PrivateRoute() {
 
   return (
     <div>
-      {authValue ? (
-        <>
+      {/* {authValue ? (
+        <> */}
          <ResponsiveAppBar>
           <Outlet />
         </ ResponsiveAppBar>
-        </>
+        {/* </>
       ) : (
         <Navigate to="/" />
-      )}
+      )} */}
     </div>
   );
 }
