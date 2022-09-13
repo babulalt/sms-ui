@@ -1,19 +1,19 @@
 import * as types from "../constant/actionTypes";
-import { postRequest } from "../services/login";
+import { postRequest, postStuInfo } from "../services/login";
 
 
-const signUpUser = (response) => ({
+const stuInfo = (response) => ({
   type: types.STUDENT_INFO,
   payload: response,
 });
 
 
-export const signUp= (dataSignUpRequest) => async (dispatch) => {
-  try {
-    const response = await postRequest(dataSignUpRequest, "student_info");
-    console.log('......',response.data)
-    dispatch(signUpUser(true));
-  } catch (error) {
-    console.log("error in sign up",error);
+export const studentInfoAction= (studentInfoData) => async (dispatch) => {
+  try{
+    const response = await postStuInfo(studentInfoData, "student_info");
+    dispatch(stuInfo(response));
   }
+  catch (error) {
+      console.log("error in sign up",error);
+    }
 };

@@ -16,65 +16,42 @@ import { StudentRegister } from './StudentRegister'
 import { StudentLogin } from './StudentLogin'
 import { CourseChoice } from './CourseChoice'
 
-const steps = ['Register', 'Login', 'Applicant Info', 'Address Info', 'Education Info', 'File Attach'];
+const steps = [ 'Applicant Info', 'Address Info', 'Education Info', 'File Attach'];
 
 function getStepContent(activeStep,setActiveStep, steps, handleBack, handleNext) {
   switch (activeStep) {
-    // case 0:
-    //   return <CourseChoice
-    //     activeStep={activeStep}
-    //     setActiveStep={setActiveStep}
-    //     handleBack={handleBack}
-    //     handleNext={handleNext}
-    //     steps={steps}
-    //   />;
     case 0:
-      return <StudentRegister
-        activeStep={activeStep}
-        setActiveStep={setActiveStep}
-        handleBack={handleBack}
-        handleNext={handleNext}
-        steps={steps}
+      return <StudentInfo
+      activeStep={activeStep}
+      setActiveStep={setActiveStep}
+      handleBack={handleBack}
+      handleNext={handleNext}
+      steps={steps}
       />;
     case 1:
-      return <StudentLogin
-        activeStep={activeStep}
-        setActiveStep={setActiveStep}
-        handleBack={handleBack}
-        handleNext={handleNext}
-        steps={steps}
+      return <AddressForm
+      activeStep={activeStep}
+      setActiveStep={setActiveStep}
+      handleBack={handleBack}
+      handleNext={handleNext}
+      steps={steps}
       />;
     case 2:
-      return <StudentInfo
-        activeStep={activeStep}
-        setActiveStep={setActiveStep}
-        handleBack={handleBack}
-        handleNext={handleNext}
-        steps={steps}
+      return <EducationForm
+      activeStep={activeStep}
+      setActiveStep={setActiveStep}
+      handleBack={handleBack}
+      handleNext={handleNext}
+      steps={steps}
       />;
     case 3:
-      return <AddressForm
-        activeStep={activeStep}
-        setActiveStep={setActiveStep}
-        handleBack={handleBack}
-        handleNext={handleNext}
-        steps={steps}
-      />;
-    case 4:
-      return <EducationForm
-        activeStep={activeStep}
-        setActiveStep={setActiveStep}
-        handleBack={handleBack}
-        handleNext={handleNext}
-        steps={steps}
-      />;
-    case 5:
       return <FileInfo
-        activeStep={activeStep}
-        setActiveStep={setActiveStep}
-        handleBack={handleBack}
-        handleNext={handleNext}
-        steps={steps} />;
+      activeStep={activeStep}
+      setActiveStep={setActiveStep}
+      handleBack={handleBack}
+      handleNext={handleNext}
+      steps={steps}
+         />;
     default:
       throw new Error('Unknown step');
   }

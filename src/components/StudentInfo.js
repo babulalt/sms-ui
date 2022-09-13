@@ -9,6 +9,8 @@ import Select from '@mui/material/Select';
 import { useFormik } from "formik";
 import Button from '@mui/material/Button';
 import * as Yup from 'yup';
+import { useDispatch, useSelector } from "react-redux";
+import { studentInfoAction } from '../action/studentinfo';
 
 
 export const StudentInfo = ({
@@ -17,6 +19,12 @@ export const StudentInfo = ({
     handleBack,
     handleNext,
     steps }) => {
+    const handleNextAddress = () => {
+        setActiveStep(activeStep + 1);
+    };
+
+    const dispatch = useDispatch();
+
     const formik = useFormik({
         initialValues: {
             firstName: "",
@@ -26,7 +34,7 @@ export const StudentInfo = ({
             mobileNum: "",
             parentName: "",
             parentRelation: "",
-            // parentMobileNum:"",
+            parentNumber: "",
             dob: "",
             religion: ""
         },
@@ -38,12 +46,27 @@ export const StudentInfo = ({
             mobileNum: Yup.number().required(),
             parentName: Yup.string().max(15, "Must be 15 character or less").required("Required"),
             parentRelation: Yup.string().max(15, "Must be 15 character or less").required("Required"),
+            parentNumber: Yup.number().required(),
             dob: Yup.string().required(),
             religion: Yup.string().max(15, "Must be 15 character or less").required()
         }),
-        // onSubmit: (handleNext) =>{
-        //     handleNext();
-        // }
+
+        onSubmit: (handleNext) => {
+            const studetInfoData={
+                "first_name":formik.values.firstName,
+                "last_name":formik.values.lastName,
+                "gender":formik.values.gender,
+                "dob":formik.values.dob,
+                "mobile_num":formik.values.mobileNum,
+                "email":formik.values.email,
+                "parent_name":formik.values.parentName,
+                "parent_mobile":formik.values.parentNumber,
+                "parent_relation":formik.values.parentRelation,
+            }
+            console.log(studetInfoData)
+            handleNextAddress();
+            dispatch(studentInfoAction(studetInfoData))
+        }
     });
 
     return (
@@ -112,9 +135,9 @@ export const StudentInfo = ({
                                 <MenuItem value="select">
                                     <em>Select Gender</em>
                                 </MenuItem>
-                                <MenuItem value={10}>Male</MenuItem>
-                                <MenuItem value={20}>Female</MenuItem>
-                                <MenuItem value={30}>Others</MenuItem>
+                                <MenuItem value={"male"}>Male</MenuItem>
+                                <MenuItem value={"female"}>Female</MenuItem>
+                                <MenuItem value={"others"}>Others</MenuItem>
                             </Select>
                             {formik.touched.gender && formik.errors.gender ? <p style={{ color: '#d32f2f', fontWeight: '400', fontSize: '0.75rem' }}>{formik.errors.gender}</p> : null}
                         </FormControl>
@@ -206,10 +229,13 @@ export const StudentInfo = ({
                             id="parentNumber"
                             name="parentNumber"
                             label="Parent Mobile Number"
-                            value={formik.values.parentMobileNum}
+                            value={formik.values.parentNumber}
                             fullWidth
                             variant="outlined"
                             onChange={formik.handleChange}
+                            error={formik.touched.parentNumber && formik.errors.parentNumber ? true : false}
+                            helperText={formik.errors.parentNumber}
+                            onBlur={formik.handleBlur}
                         />
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -261,7 +287,6 @@ export const StudentInfo = ({
                     <Button
                         type='submit'
                         variant="contained"
-                        onClick={handleNext}
                         sx={{ mt: 3, ml: 1 }}
                         disabled={!formik.values.firstName || !formik.values.lastName || !formik.values.gender ||
                             !formik.values.email || !formik.values.mobileNum || !formik.values.parentName
@@ -273,6 +298,9 @@ export const StudentInfo = ({
                     </Button>
                 </div>
             </div>
+            {/* <Button
+                onClick={() => dispatch(studentInfoAction("sugam lama"))}
+            >click for API</Button> */}
         </form>
     );
 }

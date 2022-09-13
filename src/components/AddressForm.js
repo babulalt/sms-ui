@@ -89,7 +89,7 @@ export const AddressForm = (
                             error={formik.touched.state && formik.errors.state ? true : false}
                             autoComplete="given-name"
                             variant="outlined"
-                            helperText={formik.errors.this.state}
+                            helperText={formik.errors.state}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                         />
@@ -198,7 +198,7 @@ export const AddressForm = (
                             error={formik.touched.tstate && formik.errors.tstate ? true : false}
                             autoComplete="given-name"
                             variant="outlined"
-                            helperText={formik.errors.this.tstate}
+                            helperText={formik.errors.tstate}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                         />

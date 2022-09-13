@@ -1,7 +1,7 @@
 import * as types from "../constant/actionTypes";
 
 const INITIAL_STUDENT_INFO_STATE = {
-  isSignup: false,
+  studentInfo: null,
 };
 
 function StudentInfo(state = INITIAL_STUDENT_INFO_STATE, action) {
@@ -11,7 +11,7 @@ function StudentInfo(state = INITIAL_STUDENT_INFO_STATE, action) {
       console.log("data",payload)
       return {
         ...state,
-         isSignup: payload,
+        studentInfo: payload,
       };
     default:
       return state;

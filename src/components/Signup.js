@@ -53,12 +53,11 @@ export const SignUp = () => {
       password: data.get('password'),
     });
     const datasignupRequest = {
-      firstname: 'apple',
-      lastname: 'appps',
-      email: 'test@gmail.com',
-      username: 'sugamlama',
-      mobile_number: 9863857035,
-      password: 'abc1234A'
+      firstname:data.get('firstName'),
+      lastname: data.get('lastName'),
+      email: data.get('email'),
+      password: data.get('password'),
+      role: data.get('role'),
     }
     dispatch(signUp(datasignupRequest));
   };
@@ -118,17 +117,6 @@ export const SignUp = () => {
                 <TextField
                   required
                   fullWidth
-                  name="username"
-                  label="Username"
-                  type="text"
-                  id="username"
-                  autoComplete="username"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
                   name="password"
                   label="Password"
                   type="password"
@@ -149,9 +137,9 @@ export const SignUp = () => {
                     <MenuItem value="select">
                       <em>Select Role</em>
                     </MenuItem>
-                    <MenuItem value={10}>Student</MenuItem>
-                    <MenuItem value={20}>Teacher</MenuItem>
-                    <MenuItem value={30}>Guest</MenuItem>
+                    <MenuItem value={"student"}>Student</MenuItem>
+                    <MenuItem value={"teacher"}>Teacher</MenuItem>
+                    <MenuItem value={"guest"}>Guest</MenuItem>
                   </Select>
                 </FormControl>
               </Grid>
