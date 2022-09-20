@@ -26,7 +26,7 @@ export const Home = () => {
                         align="left"
                         color="blue"
                         gutterBottom
-                        sx={{ pt: 3 }}
+                        sx={{ pl: 2.5, pr:2.5}}
                     >
                         Welcome to MRC
                     </Typography>
@@ -35,15 +35,15 @@ export const Home = () => {
                         align="left"
                         color="text.primary"
                         gutterBottom
+                        sx={{ pl: 2.5, pr:2.5}}
                     >
-                        Mahendra Ratna Campus (MRC), college of IT and Education, is a highly professional
-                        and experienced college based in Kathmandu which was established in 1979.It comprises of multitalented
-                        professionals considered among the best in the industry. It educates all students, not only to face the
-                        challenges of the fast-moving industry but also to perform exceedingly well. NCCS is fully dedicated in
-                        providing university curriculum to students. It is affiliated with Nepal's oldest and prestigious
-                        Tribhuvan University. In this regard it is conducting four years Bachelor of Information Communication and
-                        Technology program, four years Bachelor of Major Mathematics Program, four years Bachelor of Major Science
-                        program, four years of Bachelor of Major English and four years Bachelor of Major English and so on.
+                        The Mahendra Ratna Campus (MRC) was founded in 1979, college of IT and Education, is highly regarded institution with years
+                        of experience and is based in Kathmandu. Its staff is comprised of supremely talented experts who are recognized as some of
+                        the finest in the field. It qualifies  students to perform exceptionally well in order to meet the difficulties of the fast
+                        evolving market. MRC is entirely committed to offering students a university education. It is affiliated with Tribhuvan
+                        University, the prominent and oldest university in Nepal. It offers the four-year Bachelor of Information, Communication, and
+                        Technology program, the four-year Bachelor of Major Mathematics program, the four-year Bachelor of Major Science program, the
+                        four-year Bachelor of Major English program, and so on.
                     </Typography>
                 </Container>
             </ThemeProvider>
