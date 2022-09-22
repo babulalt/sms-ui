@@ -19,6 +19,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signUp } from "../action/signup";
+import {CustomizedSnackbars} from './SnackBar'
 
 
 
@@ -40,6 +41,8 @@ const theme = createTheme();
 
 export const SignUp = () => {
   const [gender, setGender] = React.useState('');
+  const [open, setOpen] = React.useState(true);
+
   const dispatch = useDispatch();
   const isSignup = useSelector((state) => state.signup.isSignup);
   const handleGenderChange = (event) => {
@@ -57,6 +60,7 @@ export const SignUp = () => {
       lastname: data.get('lastName'),
       email: data.get('email'),
       password: data.get('password'),
+      username:data.get('email'),
       role: data.get('role'),
     }
     dispatch(signUp(datasignupRequest));
@@ -64,6 +68,11 @@ export const SignUp = () => {
   if (isSignup) return <Navigate to="/" />;
   return (
     <ThemeProvider theme={theme}>
+       {
+        open && 
+      <CustomizedSnackbars openState={open} cb={()=>{setOpen(false)}}/>
+
+      }
       <Container component="main" maxWidth="sm">
         <CssBaseline />
         <Box
