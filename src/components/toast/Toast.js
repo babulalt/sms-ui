@@ -8,13 +8,13 @@ import React from 'react';
 // import HelpIcon from '@material-ui/icons/Help';
 // import { css } from 'glamor';
 
-export const Message = ({ msg, icon, color }) => (
+export const Message = ({ msg, icon }) => (
     <>
         <Grid container direction="row" data-test="main-container">
             {/* <Grid item data-test="icon">{icon}</Grid> */}
       &nbsp;&nbsp;&nbsp;
             <Grid item>
-                <Typography variant="subtitle1" style={ { color : color } } data-test="message">failed to login</Typography>
+                <Typography variant="subtitle1" style={ { color : "white" } } data-test="message">failed to login</Typography>
             </Grid>
         </Grid>
     </>
@@ -25,7 +25,7 @@ const ToastConfig = {
     return toast(<Message msg={ msg } />)
   },
   success(msg) {
-    return toast.success(<Message msg={ msg } color="#1b5e20"
+    return toast.success(<Message msg={ msg }
         // icon={ <CheckIcon /> } 
         />, {
       position: toast.POSITION.TOP_RIGHT,
@@ -34,12 +34,12 @@ const ToastConfig = {
     });
   },
   info(msg) {
-    return toast.info(<Message msg={ msg } color="#01579b"
+    return toast.info(<Message msg={ msg }
         // icon={ <InfoIcon /> } 
         />);
   },
   warn(msg) {
-    return toast.warn(<Message msg={ msg } color="#ff9800"
+    return toast.warn(<Message msg={ msg }
         // icon={ <HelpIcon /> } 
         />,{
       position: toast.POSITION.TOP_RIGHT,
@@ -48,7 +48,7 @@ const ToastConfig = {
     });
   },
   error(msg) {
-    return toast.error(<Message msg={ msg } color="#d32f2f"
+    return toast.error(<Message msg={ msg }
         // icon={ <WarningIcon /> } 
         />,{
       position: toast.POSITION.TOP_RIGHT,
