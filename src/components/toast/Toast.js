@@ -14,7 +14,7 @@ export const Message = ({ msg, icon }) => (
             {/* <Grid item data-test="icon">{icon}</Grid> */}
       &nbsp;&nbsp;&nbsp;
             <Grid item>
-                <Typography variant="subtitle1" style={ { color : "white" } } data-test="message">failed to login</Typography>
+                <Typography variant="subtitle1" style={ { color : "white" } } data-test="message">{msg}</Typography>
             </Grid>
         </Grid>
     </>
