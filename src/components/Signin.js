@@ -131,7 +131,7 @@ if (isAuthenticated) return <Navigate to="/home" />;
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link href="/forgot_password" variant="body2">
                   Forgot password?
                 </Link>
               </Grid>

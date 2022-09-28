@@ -23,17 +23,17 @@ const pages = [
     page: 'Home',
     indexs: 0
   },
-  {
-    page: 'About',
-    indexs: 1
-  }
-  , {
-    page: 'Notice',
-    indexs: 2
-  },
+  // {
+  //   page: 'About',
+  //   indexs: 1
+  // }
+  // , {
+  //   page: 'Notice',
+  //   indexs: 2
+  // },
   {
     page: 'Courses',
-    indexs: 4
+    indexs: 3
   }
 ];
 
@@ -43,14 +43,14 @@ const programs = [
     name: 'Bachelor of Inforamtion and Communication Technology',
     path: '/menu'
   },
-  {
-    name: 'Bachelor of Inforamtion Management',
-    path: '/menu'
-  }
-  , {
-    name: 'Bachelor of Computer Application (BCA)',
-    path: '/menu'
-  },
+  // {
+  //   name: 'Bachelor of Inforamtion Management',
+  //   path: '/menu'
+  // }
+  // , {
+  //   name: 'Bachelor of Computer Application (BCA)',
+  //   path: '/menu'
+  // },
 ];
 
 export const ResponsiveAppBar = ({ children }) => {
@@ -64,10 +64,10 @@ export const ResponsiveAppBar = ({ children }) => {
     switch (step) {
       case 0: 
         return navigate("/home");
-      case 1:  
-        return navigate("/home");
-      case 2: 
-        return navigate("/home")
+      // case 1:  
+      //   return navigate("/home");
+      // case 2: 
+      //   return navigate("/home")
       case 3: 
         return navigate("/courses")
       default:

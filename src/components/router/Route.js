@@ -9,6 +9,7 @@ import PrivateRoute from "./PrivateRouting";
 import { BictCourse } from '../BictCourse';
 import { CourseChoice } from '../CourseChoice';
 import {CustomizedSnackbars} from '../SnackBar'
+import { ForgotPassword } from '../ForgotPassword';
 
 
 
@@ -18,6 +19,7 @@ const Router = () => {
       <Routes>
         <Route path='/' element={<SignIn />} />
         <Route path='/signup' element={<SignUp/>}/>
+        <Route path='/forgot_password' element={<ForgotPassword />} />
         <Route element={<PrivateRoute />}>
         <Route index path='/home' element={<Home />} />
         <Route  path='/online' element={<EnrollForm />} /> 
@@ -25,7 +27,6 @@ const Router = () => {
         <Route index path='/courses' element={<Course />} />
         <Route path='/menu' element={<BictCourse />} />
         <Route path='/snack' element={<CustomizedSnackbars />} />
-
         </Route>
       </Routes>
     </BrowserRouter>

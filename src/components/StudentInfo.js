@@ -11,7 +11,8 @@ import Button from '@mui/material/Button';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from "react-redux";
 import { studentInfoAction } from '../action/studentinfo';
-
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 export const StudentInfo = ({
     activeStep,
@@ -22,7 +23,8 @@ export const StudentInfo = ({
     const handleNextAddress = () => {
         setActiveStep(activeStep + 1);
     };
-
+    const studentInfo = useSelector((state) => state.StudentInfo.student);
+    console.log("state loading ",studentInfo)
     const dispatch = useDispatch();
 
     const formik = useFormik({
@@ -301,6 +303,11 @@ export const StudentInfo = ({
             {/* <Button
                 onClick={() => dispatch(studentInfoAction("sugam lama"))}
             >click for API</Button> */}
+            {
+                 studentInfo&&(<Box sx={{ display: 'flex' }}>
+                 <CircularProgress />
+               </Box>)
+            }
         </form>
     );
 }
